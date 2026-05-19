@@ -96,8 +96,8 @@ Contato (15%)      100%   → 0,150   [100% → conta; <100% → zera]
 Status Rep. (15%)  100%   → 0,150   [100% → conta; <100% → zera]
 ─────────────────────────────
 Score Ponderado:   89,4%
-Valor Variável:    R$5.500 × 16% × 89,4% = R$787,68
-Remuneração Total: R$6.287,68
+Valor Variável:    R$5.500 × 16% × 89,4% = R$786,72
+Remuneração Total: R$6.286,72
 ```
 
 ### Passo 4 — Resumo consolidado
