@@ -1,0 +1,43 @@
+name: fechamento-metas
+version: 1.0.0
+description: Squad para fechamento de metas mensais e semestrais dos gestores de tráfego da Stark
+author: Amanda
+license: UNLICENSED
+slashPrefix: fechamento-metas
+
+aiox:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - gestor-fechamento.md
+  tasks:
+    - fechar-mes.md
+    - coletar-kpis.md
+    - calcular-score.md
+    - preencher-planilha.md
+  workflows: []
+  checklists: []
+  templates: []
+  scripts: []
+
+config:
+  extends: extend
+
+integrations:
+  google_sheets:
+    spreadsheet_id: 1UQv-2uo3pGEN4OBLC6roykEfFyjtObV3K30C2WE7ElU
+    url: https://docs.google.com/spreadsheets/d/1UQv-2uo3pGEN4OBLC6roykEfFyjtObV3K30C2WE7ElU
+
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+tags:
+  - trafego
+  - metas
+  - fechamento
+  - remuneracao
+  - stark
