@@ -1,0 +1,114 @@
+formula:
+  variavel: "rem_base × 16% × score_ponderado"
+  regra_churn: "Se Churn < 100% → Valor Variável = R$0,00 (independente dos outros KPIs)"
+
+fontes:
+  planilha_resultados:
+    id: 1PATiZf_JBoCgs2x8CIVKiIUdOTKpXz3x
+    url: https://docs.google.com/spreadsheets/d/1PATiZf_JBoCgs2x8CIVKiIUdOTKpXz3x
+    descricao: "Reunião de Resultados — preenchida mensalmente com ROI, CPS e Google CPL por gestor"
+
+  clickup_relatorios_clientes:
+    list_id: "901307744658"
+    list_nome: "Relatórios dos Clientes"
+    url: https://app.clickup.com/36998608/v/l/6-901307744658-1
+    filtro: "Relatório ao Cliente Tráfego Pago | [Cliente]"
+    status_ok: "concluído"
+
+  clickup_status_report:
+    list_id: "901300668557"
+    list_nome: "Status Report"
+    url: https://app.clickup.com/36998608/v/l/6-901300668557-1
+    filtro: "Status Report | [Nome do Gestor]"
+    status_ok: "concluído"
+
+kpis:
+  - id: nps
+    nome: NPS
+    peso: 0.125
+    fonte: manual
+    tipo: escala
+    regras_pontuacao:
+      - condicao: "score >= 70"
+        percentual: 1.00
+      - condicao: "score >= 60"
+        percentual: 0.75
+      - condicao: "score >= 50"
+        percentual: 0.50
+      - condicao: "score >= 40"
+        percentual: 0.25
+      - condicao: "score < 40"
+        percentual: 0.00
+    como_coletar: "Perguntar manualmente — Amanda informa o score NPS de cada gestor"
+
+  - id: churn
+    nome: Churn (Taxa de Continuidade da Carteira)
+    peso: 0.125
+    fonte: planilha_resultados
+    tipo: percentual
+    coluna: "% Meta Churn Batida"
+    regra_especial: "Se Churn < 100% → Valor Variável = R$0,00"
+    como_coletar: "Buscar na Planilha de Reunião de Resultados, aba do mês, coluna '% Meta Churn Batida'"
+
+  - id: roi
+    nome: ROI ≥ 1 (Cirurgia Plástica)
+    peso: 0.15
+    fonte: planilha_resultados
+    tipo: percentual
+    coluna: "% Meta ROI Batida"
+    threshold_rule: "Se percentual < 70% → contribuição = 0% (zera o KPI)"
+    como_coletar: "Buscar na Planilha de Reunião de Resultados, aba do mês, coluna '% Meta ROI Batida'"
+
+  - id: cps
+    nome: CPS < R$2,59 (Custo por Seguidor)
+    peso: 0.20
+    fonte: planilha_resultados
+    tipo: percentual
+    coluna: "% Meta CPS Batida"
+    threshold_rule: "Se percentual < 70% → contribuição = 0% (zera o KPI)"
+    como_coletar: "Buscar na Planilha de Reunião de Resultados, aba do mês, coluna '% Meta CPS Batida'"
+
+  - id: google_cpl
+    nome: Google CPL ≤ R$25
+    peso: 0.10
+    fonte: planilha_resultados
+    tipo: percentual
+    coluna: "% Meta CPA Batida"
+    como_coletar: "Buscar na Planilha de Reunião de Resultados, aba do mês, coluna '% Meta CPA Batida'"
+
+  - id: contato_cliente
+    nome: Contato com Cliente
+    peso: 0.15
+    fonte: clickup_relatorios_clientes
+    tipo: percentual_clickup
+    binary_rule: "Apenas 100% conta (todos os clientes contatados). Qualquer valor < 100% → 0%"
+    como_coletar: >
+      Contar tasks 'Relatório ao Cliente Tráfego Pago | [Cliente]' atribuídas
+      ao gestor na lista 'Relatórios dos Clientes'.
+      concluído = conta como feito. Calcular: feitos ÷ total do gestor.
+      Se resultado < 100% → contribuição = 0%.
+
+  - id: status_report
+    nome: Status Report
+    peso: 0.15
+    fonte: clickup_status_report
+    tipo: binario_clickup
+    binary_rule: "Apenas 100% conta (task concluída). Qualquer valor < 100% → 0%"
+    como_coletar: >
+      Verificar task 'Status Report | [Nome Gestor]' na lista 'Status Report'.
+      concluído = 100%. a fazer = 0%.
+
+semestral:
+  planilha_id: 1UQv-2uo3pGEN4OBLC6roykEfFyjtObV3K30C2WE7ElU
+  url: https://docs.google.com/spreadsheets/d/1UQv-2uo3pGEN4OBLC6roykEfFyjtObV3K30C2WE7ElU
+  descricao: "Bônus semestral — média dos scores mensais (Dez→Mai)"
+  faixas:
+    - media_minima: 0.75
+      multiplo: 1.10
+      percentual_bonus: 1.00
+    - media_minima: 0.65
+      multiplo: 1.00
+      percentual_bonus: 0.65
+    - media_minima: 0.00
+      multiplo: 1.00
+      percentual_bonus: 0.00

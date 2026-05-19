@@ -1,0 +1,13 @@
+schema: 1
+story: "1.1"
+gate: PASS
+status_reason: "Todos os 8 ACs atendidos. Regras de threshold (ROI/CPS ≥70%) e binário (Contato/SR = 100%) implementadas corretamente em kpis.yaml, fechar-mes.md e planilha Google Sheets."
+reviewer: Quinn
+updated: "2026-05-19T00:00:00Z"
+top_issues:
+  - id: "TEST-001"
+    severity: low
+    finding: "Squad não possui testes automatizados para validação das regras de negócio"
+    suggested_action: "Considerar criação de script de validação de fórmulas ou checklist de validação manual estruturado para futuras atualizações de regras"
+waiver:
+  active: false
