@@ -1,0 +1,45 @@
+gestores:
+  - nome: Amanda
+    cargo: Gestor de Tráfego Sênior II
+    rem_base: 5500.00
+    bonus_semestral: 1080.00
+
+  - nome: Vinicius
+    cargo: Gestor de Tráfego Sênior II
+    rem_base: 4500.00
+    bonus_semestral: 1080.00
+
+  - nome: Luiz Eduardo
+    cargo: Gestor de Tráfego Pleno 2
+    rem_base: 3500.00
+    bonus_semestral: 840.00
+
+  - nome: Thiago Manoel
+    cargo: Gestor de Tráfego Pleno II
+    rem_base: 3500.00
+    bonus_semestral: 600.00
+
+  - nome: Mateus
+    cargo: Gestor de Tráfego Pleno II
+    rem_base: 3500.00
+    bonus_semestral: 600.00
+
+  - nome: Andreyves
+    cargo: Gestor de Tráfego Junior 2
+    rem_base: 2500.00
+    bonus_semestral: 600.00
+
+  - nome: Wallison
+    cargo: Gestor de Tráfego Pleno I
+    rem_base: 3000.00
+    bonus_semestral: 300.00
+
+  - nome: Gustavo Radler
+    cargo: Gestor de Tráfego Senior I
+    rem_base: 4000.00
+    bonus_semestral: 360.00
+
+  - nome: Richard
+    cargo: Gestor de Tráfego Senior I
+    rem_base: 4000.00
+    bonus_semestral: 1080.00
